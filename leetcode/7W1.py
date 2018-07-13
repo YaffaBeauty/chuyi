@@ -8,21 +8,32 @@ leet_b = "bbbbbb"
 字典s_dict={'abc':3,'bca':3,'cab':3,'abc':3,'bc':2,'cb':2,'b':1},取最大value即为最大子串长度
 """
 
-class Solution:
+
+class Solution():
     def lengthOfLongestSubstring(self, s):
         s_dict = {}
         for i in range(len(s)):
             max_s = s[i]
-            # todo 条件实现，如何把条件连起来，想着用递归调用(考虑栈溢出和实现过程)
-            if i < len(s)-2 and s[i+1] not in max_s:
-                max_s = max_s+s[i+1]
-            if i + 1 < len(s)-2 and s[i+1+1] not in max_s:
-                max_s = max_s+s[i+1+1]
+            j = i
+            while j < len(s):
 
-            s_dict[s] = len(max_s)
+                if j < len(s)-2 and s[j+1] not in max_s:
+                    max_s = max_s + s[j+1]
+                    j = j + 1
+                else:
+                    break
+            s_dict[max_s] = len(max_s)
+
         result_list = sorted(s_dict.items(), key=lambda x: x[1], reverse=True)
 
         return result_list[0][1]
+
+
+if __name__ == '__main__':
+
+    sol = Solution()
+    print(sol.lengthOfLongestSubstring(leet_a))
+
 
 
 
