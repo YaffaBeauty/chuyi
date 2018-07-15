@@ -11,6 +11,9 @@ leet_b = "bbbbbb"
 
 class Solution():
     def lengthOfLongestSubstring(self, s):
+        if s == "":
+            return 0
+
         s_dict = {}
         for i in range(len(s)):
             max_s = s[i]
